@@ -1,6 +1,4 @@
 
-![application-dashboard](https://github.com/user-attachments/assets/89e96928-ee9a-4f38-aa5f-411fdf67b8b8)
-
 # CI/CD Workflow for Automated Static Website Deployment 🚀
 
 ### 1️⃣ Developer Pushes Code
@@ -42,3 +40,9 @@ This streamlined **CI/CD pipeline** ensures efficient delivery of code changes t
 - **Automation of Code Deployment**: No manual intervention is needed once the pipeline is set up.
 - **Reliability**: Continuous deployment and monitoring ensure that changes are deployed quickly with no disruption.
 - **Scalability**: S3 and AWS services scale automatically to meet traffic demands.
+
+### Application Dashboard
+![application-dashboard](https://github.com/user-attachments/assets/89e96928-ee9a-4f38-aa5f-411fdf67b8b8)
+
+### Architecture
+![Screenshot 2025-01-19 at 4 31 26 PM](https://github.com/user-attachments/assets/f2e2ae88-a487-44fc-bf3a-b9958cbdbc54)
