@@ -46,3 +46,6 @@ This streamlined **CI/CD pipeline** ensures efficient delivery of code changes t
 
 ### Architecture
 ![Screenshot 2025-01-19 at 4 31 26 PM](https://github.com/user-attachments/assets/f2e2ae88-a487-44fc-bf3a-b9958cbdbc54)
+
+## RESTful APIs
+![Screenshot 2025-01-19 at 4 32 22 PM](https://github.com/user-attachments/assets/e14f3fe7-f25b-44a7-a8a2-3204ffb4b647)
