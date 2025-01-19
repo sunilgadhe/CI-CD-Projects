@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+    <link rel="stylesheet" href="../master.css" />
+    <link rel="icon" href="favic.png" type="image/gif" sizes="16x16" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- <script type="text/javascript" src="master.js" async></script> -->
+
+    <!-- ChartJS  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <!-- CahrtJS end -->
+    <title>Calories Tracker</title>
+  </head>
+  <body class="bg-primary">
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+
+    <!-- Side Nav -->
+
+    <div id="mySidenav" class="sidenav bg-secondary d-flex flex-column">
+      <a href="javascript:void(0)" class="closebtn text-warning" onclick="closeNav()">&times;</a>
+      <div class="flex-column mb-auto" id="sidenav-text">
+        <a href="dashboard.html" class="text-warning link-span-1 d-flex align-items-center justify-content-start"><i class="fa fa-dashboard me-3 fs-4"></i> Dasboard</a>
+        <!-- <a href="diary.html" class="text-warning link-span-1 d-flex align-items-center justify-content-start"><i class="fa fa-book me-3 fs-4"></i>Diary</a> -->
+        <a href="#" class="text-warning link-span-1 d-flex align-items-center justify-content-start"><i class="fa fa-phone me-3 fs-4"></i>Contact</a>
+        <a href="#" class="text-warning link-span-1 d-flex align-items-center justify-content-start"><i class="fa fa-info me-3 fs-4"></i>About Us</a>
+        <span class="subscribebtn">
+          <button class="btn btn-warning btn-lg text-primary me-2 d-sm-inline d-none ms-4 mt-3" style="border-radius: 20px" onclick="handleSubscribe()"><i class="fa fa-badge"></i> Subscribe</button>
+        </span>
+      </div>
+      <hr />
+      <div class="dropdown mb-3">
+        <a href="#" class="d-flex align-items-center text-warning fs-5 text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="fa fa-user text-warning fs-3 rounded-3 me-3"></i>
+          Account
+        </a>
+        <ul class="dropdown-menu dropdown-menu-dark bg-secondary shadow" aria-labelledby="dropdownUser1">
+          <!-- <li><a class="dropdown-item fs-5" href="#">Profile</a></li> -->
+          <li onclick="handleLogout()"><a class="dropdown-item fs-5" href="#">Sign out</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- SideNav End -->
+    <div id="main">
+      <div class="container-fluid p-md-5">
+        <div class="w-100 mb-5 text-warning d-flex align-items-center justify-content-between bg-secondary rounded-pill py-3 px-md-5 px-4 shadow-sm border-primary border-2 border" data-aos="fade-up">
+          <div class="greetings w-100 d-md-flex d-none">
+            <h3 class="fs-2 my-0 pb-0 me-2">Hello!</h3>
+            <h3 class="fw-bold fs-2 my-0 text-capitalize"><span id="uname">John</span> 👋</h3>
+          </div>
+          <h3 class="fs-5 my-0 pb-0 w-100 text-md-center text-start fw-light">
+            <span> Dasboard </span>
+          </h3>
+          <div class="w-100 text-end">
+            <span class="subscribebtn">
+              <button onclick="handleSubscribe()" class="btn btn-warning btn-lg text-primary me-2 d-sm-inline d-none subscribebtn" style="border-radius: 20px">
+                <i class="fa fa-badge"></i> Subscribe
+              </button>
+            </span>
+
+            <button class="btn btn-warning btn-lg rounded-circle text-primary" onclick="openNav()"><i class="fa fa-navicon"></i></button>
+          </div>
+        </div>
+
+        <div class="row mt-4 p-xs-5 p-4 p-lg-3">
+          <div class="col-xl-4 mb-5" data-aos="fade-up">
+            <div class="card shadow-lg bg-warning p-3 p-md-5 position-relative hover-span-1" style="border-radius: 28px">
+              <div class="row g-0">
+                <div class="col-xl-8 col-8 col-">
+                  <div class="card-body">
+                    <p class="text-primary fs-2">Calories Required / day</p>
+                    <h4 class="fw-bold text-primary display-6 mb-5"><span id="calories">2,276</span> cal</h4>
+
+                    <a href="#" class="btn btn-primary btn-lg p-4 shadow-lg arrow-slide-btn position-absolute bottom-0 mb-5" style="border-radius: 28px">
+                      <span class="d-flex align-items-center justify-content-center">
+                        More Details
+
+                        <i class="fa fa-arrow-right ms-3 bg-warning text-primary" style="border-radius: 15px"></i>
+                      </span>
+                    </a>
+                  </div>
+                </div>
+                <div class="col-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" style="height: 300px" class="bi bi-fire img-fluid rounded-start svg-primary">
+                    <path
+                      d="M8 16c3.314 0 6-2 6-5.5 0-1.5-.5-4-2.5-6 .25 1.5-1.25 2-1.25 2C11 4 9 .5 6 0c.357 2 .5 4-2 6-1.25 1-2 2.729-2 4.5C2 14 4.686 16 8 16m0-1c-1.657 0-3-1-3-2.75 0-.75.25-2 1.25-3C6.125 10 7 10.5 7 10.5c-.375-1.25.5-3.25 2-3.5-.179 1-.25 2 1 3 .625.5 1 1.364 1 2.25C11 14 9.657 15 8 15"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-4 mb-5" data-aos="fade-up" data-aos-delay="200">
+            <div class="card shadow-lg bg-secondary p-3 p-md-5 position-relative hover-span-1" style="border-radius: 28px">
+              <div class="row g-0">
+                <div class="col-xl-8 col-8 col-">
+                  <div class="card-body">
+                    <p class="text-warning fs-2">Current Goal</p>
+                    <h4 class="fw-bold text-warning display-6 mb-5" id="goal">Maintain Weight</h4>
+
+                    <button
+                      class="btn btn-warning btn-lg p-4 shadow-lg arrow-slide-btn position-absolute bottom-0 mb-5"
+                      style="border-radius: 28px"
+                      data-bs-toggle="modal"
+                      data-bs-target="#exampleModal"
+                    >
+                      <span class="d-flex align-items-center justify-content-center">
+                        Change Goal
+
+                        <i class="fa fa-arrow-right ms-3 bg-secondary text-warning" style="border-radius: 15px"></i>
+                      </span>
+                    </button>
+                  </div>
+                </div>
+                <div class="col-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="height: 300px" class="img-fluid rounded-start svg-warning">
+                    <path
+                      d="M469.332,0.004H42.668C19.101,0.004,0,19.104,0,42.673v426.655c0,23.567,19.101,42.668,42.668,42.668h426.664
+                c23.567,0,42.668-19.101,42.668-42.668V42.673C512,19.104,492.899,0.004,469.332,0.004z M364.37,191.877h-65.293l11.409-68.16
+                l-10.592-2.15l-10.6-2.167l-17.443,72.477H147.63l-28.151-81.902c39.867-24.026,86.578-37.868,136.529-37.868
+                c49.943,0,96.645,13.842,136.513,37.868L364.37,191.877z"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Streak Card=========================== -->
+
+          <div class="col-xl-4 mb-5" data-aos="fade-up" data-aos-delay="500">
+            <div class="card shadow-lg bg-warning p-3 p-md-5 position-relative hover-span-1" style="border-radius: 28px">
+              <div class="row g-0">
+                <div class="col-xl-8 col-8 col-">
+                  <div class="card-body">
+                    <p class="text-primary fs-2">Activity level</p>
+                    <h4 class="fw-bold text-primary display-6" id="activity">Very Active</h4>
+                    <p class="text-primary fw-light mb-5" id="activity_desc">*intense excercise <span class="fw-bold fs-5"> 3-4 times </span>/week</p>
+
+                    <button
+                      class="btn btn-primary btn-lg p-4 shadow-lg arrow-slide-btn position-absolute bottom-0 mb-5"
+                      style="border-radius: 28px"
+                      data-bs-toggle="modal"
+                      data-bs-target="#exampleModal"
+                    >
+                      <span class="d-flex align-items-center justify-content-center">
+                        Change Level
+
+                        <i class="fa fa-arrow-right ms-3 bg-warning text-primary" style="border-radius: 15px"></i>
+                      </span>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="col-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height: 300px" class="img-fluid rounded-start svg-primary">
+                    <path d="M18.5 6C19.8807 6 21 4.88071 21 3.5C21 2.11929 19.8807 1 18.5 1C17.1193 1 16 2.11929 16 3.5C16 4.88071 17.1193 6 18.5 6Z" />
+                    <path
+                      d="M9.49967 3.9377L7.47 5.20625C7.11268 5.42957 7 5.79894 7 6.19575C7 6.98119 7.86395 7.46003 8.53 7.04375L10.4185 5.86341C10.7689 5.64441 11.218 5.66348 11.5485 5.91141L13 7L9.29261 10.7074C9.09787 10.9021 8.91955 11.1126 8.75947 11.3367L6.94614 13.8754C6.683 14.2438 6.20519 14.3894 5.78129 14.2305L3.21008 13.2663C2.7942 13.1103 2.3257 13.2614 2.07933 13.631C1.76802 14.098 1.92419 14.7314 2.41688 15.0001L4.88909 16.3486C6.12269 17.0215 7.65806 16.7479 8.58338 15.6904L10.5 13.5L12.3001 16.0201C12.7307 16.623 12.7928 17.4144 12.4615 18.077L10.7236 21.5528C10.3912 22.2177 10.8746 23 11.618 23C12.0887 23 12.5417 22.9167 12.7764 22.4472L14.7476 18.5049C15.2149 17.5701 15.1622 16.4595 14.6083 15.5732L13 13L16 10L17.3722 10.9148C18.6066 11.7378 19.9731 11.6756 21.3162 11.2279C21.7813 11.0729 22 10.6447 22 10.1805C22 9.56252 21.4451 9.09248 20.8356 9.19407C20.1453 9.30911 19.1462 9.69488 18.6352 9.01366C16.9655 6.78731 14.9948 5.21933 12.5466 3.85922C11.5923 3.32907 10.4254 3.35913 9.49967 3.9377Z"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Streak Card End========= -->
+
+          <!-- <div class="col-lg-8" data-aos="fade-up" data-aos-delay="800">
+            <div class="card shadow-lg bg-secondary text-warning p-3 position-relative" style="border-radius: 28px">
+              <div class="row g-0">
+                <div class="col-12 pb-4">
+                  <div class="card-body p-3 mb-4">
+                    <canvas id="myChart" style="width: 100%; height: 400px"> </canvas>
+                    <p class="text-warning fw-light mt-2">*Burned <span class="fw-bold fs-5"> 50% more</span> than other users</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="position-absolute p-4" style="border-radius: 15px; top: -10px; right: -10px">
+                <a href="#" class="btn btn-warning btn-lg shadow-lg add-slide-btn">
+                  <span class="d-flex align-items-center justify-content-center">
+                    <i class="fa fa-plus-circle fs-1"></i>
+
+                    <span class="text"> Add log</span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div> -->
+
+          <div class="col-xl-8" data-aos="fade-up" data-aos-delay="1000">
+            <div class="card shadow-lg bg-secondary text-primary p-3 position-relative h-100" style="border-radius: 28px; max-height: 900px; min-height: 720px !important">
+              <div class="row g-0">
+                <div class="col-lg-8 mb-4">
+                  <div class="card-body">
+                    <p class="text-warning fs-2">Calculate calories burn</p>
+                    <h4 class="fw-bold text-warning display-6">Activity</h4>
+
+                    <div class="w-100 d-flex mt-5">
+                      <div class="act-card class p-3 bg-warning me-3" style="border-radius: 20px; width: 120px; height: 120px" onclick="toggleActive(this)">
+                        <img src="../icons/cycling.svg" style="width: 80px" data-act="cycling" />
+                      </div>
+                      <div class="act-card class p-3 bg-warning active" style="border-radius: 20px; width: 120px; height: 120px" onclick="toggleActive(this)">
+                        <img src="../icons/running2.svg" style="width: 80px" data-act="running" />
+                      </div>
+                    </div>
+
+                    <div class="duration-bar">
+                      <div class="slidecontainer">
+                        <p class="text-warning mt-4 mb-2">Duration: <span class="fw-bold fs-3" id="duration"> 0</span> mins</p>
+                        <input type="range" min="1" max="100" value="0" class="slider mt-2" id="current-duration" />
+                      </div>
+                    </div>
+                    <div class="mt-5 d-flex align-items-center">
+                      <label for="cal-weight" class="form-label text-warning fw-bold me-3">Weight in kg</label>
+                      <input
+                        type="number"
+                        class="form-control bg-secondary text-warning shadow-sm p-3 border-warning w-25"
+                        id="cal-weight"
+                        autocomplete="weight"
+                        placeholder="75"
+                        style="border-radius: 10px"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-lg-4 d-lg-flex align-items-center">
+                  <div>
+                    <p class="text-warning fs-2">Calories burned</p>
+                    <h4 class="fw-bold text-warning display-6"><span id="calories-burned">0.0</span> calc</h4>
+                  </div>
+                </div>
+              </div>
+              <div class="w-100 mt-4">
+                <button class="btn btn-warning btn-lg p-4 shadow-lg arrow-slide-btn mb-5" style="border-radius: 28px" onclick="calculateCalories()">
+                  <span class="d-flex align-items-center justify-content-center">
+                    Calculate
+
+                    <i class="fa fa-arrow-right ms-3 bg-secondary text-warning" style="border-radius: 15px"></i>
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-4 subscribebtn" data-aos="fade-up" data-aos-delay="1000">
+            <div class="card shadow-lg bg-warning text-primary p-3 position-relative h-50" style="border-radius: 28px">
+              <div class="row g-0">
+                <div class="col-12">
+                  <div class="card-body">
+                    <p class="text-primary fs-2">Want more Insights?</p>
+                    <h4 class="fw-bold text-primary display-6">Subscribe Now!</h4>
+                    <!-- <p class="text-primary fw-light mb-5">*intense excercise <span class="fw-bold fs-5"> 3-4 times </span>/week</p> -->
+
+                    <button class="btn btn-primary btn-lg p-4 shadow-lg arrow-slide-btn position-absolute bottom-0 mb-5 subscribebtn" style="border-radius: 28px" onclick="handleSubscribe()">
+                      <span class="d-flex align-items-center justify-content-center">
+                        Subscribe Now!
+
+                        <i class="fa fa-arrow-right ms-3 bg-warning text-primary" style="border-radius: 15px"></i>
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- <div class="col-xl-4" data-aos="fade-up" data-aos-delay="1000">
+            <div class="card shadow-lg bg-warning text-primary p-3 position-relative" style="border-radius: 28px">
+              <div class="row g-0">
+                <div class="col-12 pb-4">
+                  <div class="card-body p-3 mb-4">
+                    <canvas id="myChart2" style="width: 100%; height: 400px"> </canvas>
+                    <p class="text-primary fw-light mt-2">*better than <span class="fw-bold fs-5"> 70% </span>users</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="position-absolute p-4" style="border-radius: 15px; top: -10px; right: -10px">
+                <a href="#" class="btn btn-secondary btn-lg shadow-lg add-slide-btn">
+                  <span class="d-flex align-items-center justify-content-center">
+                    <i class="fa fa-plus-circle fs-1"></i>
+
+                    <span class="text"> Add log</span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div> -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Change Goals/activity/others MOdal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-xl">
+        <div class="modal-content bg-secondary" style="border-radius: 20px">
+          <div class="modal-header">
+            <h5 class="modal-title text-warning">User Data</h5>
+            <button type="button" class="btn btn-warning" data-bs-dismiss="modal" aria-label="Close">
+              <i class="fa fa-times"></i>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="card text-primary bg-warning px-3 py-4" style="background: transparent; border: none">
+              <div class="h-100">
+                <form id="uform" onsubmit="handlesubmit(event)" class="row" data-aos="fade-down">
+                  <h3 class="fw-bold">Update Data</h3>
+                  <p id="responseMessage" class="fw-bold text-info"></p>
+                  <hr />
+                  <div class="col-12 mb-3">
+                    <label for="age" class="form-label">Age</label>
+                    <input type="number" class="form-control bg-light text-dark shadow-sm p-3 border-secondary" id="age" autocomplete="age" placeholder="25" style="border-radius: 10px" />
+                  </div>
+                  <div class="col-12 mb-3">
+                    <label for="age" class="form-label">Gender</label>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" />
+                      <label class="form-check-label" for="flexRadioDefault1"> Male </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked />
+                      <label class="form-check-label" for="flexRadioDefault2"> Female </label>
+                    </div>
+                  </div>
+                  <div class="col-12 mb-3">
+                    <label for="height" class="form-label">Height in Centimeters</label>
+                    <input type="number" class="form-control bg-light text-dark shadow-sm p-3 border-secondary" id="height" autocomplete="height" placeholder="180" style="border-radius: 10px" />
+                  </div>
+
+                  <div class="col-12 mb-3">
+                    <label for="weight" class="form-label">Weight in kg</label>
+                    <input type="number" class="form-control bg-light text-dark shadow-sm p-3 border-secondary" id="weight" autocomplete="weight" placeholder="75" style="border-radius: 10px" />
+                  </div>
+
+                  <div class="col-12 mb-3">
+                    <label for="activity_level" className="form-label"> Activity Level </label>
+                    <select
+                      required
+                      type="text"
+                      class="form-control form-select bg-light text-dark shadow-sm p-3 border-muted"
+                      id="activity_level"
+                      autocomplete="activity_level"
+                      value=""
+                      style="border-radius: 10px"
+                    >
+                      <option value="sedentary">Sedentary: little or no exercise</option>
+                      <option value="lightly_active" selected="">Light: exercise 1-3 times/week</option>
+                      <option value="moderately_active">Moderate: exercise 4-5 times/week</option>
+                      <option value="very_active">Very Active: intense exercise 6-7 times/week</option>
+                    </select>
+                  </div>
+
+                  <div class="col-12 mb-3">
+                    <label for="weight_goal" className="form-label">Weight Goal </label>
+                    <select required class="form-control form-select bg-light text-dark shadow-sm p-3 border-muted" id="weight_goal" autocomplete="goal" value="" style="border-radius: 10px">
+                      <option value="maintain">Maintain</option>
+                      <option value="lose" selected="">Weight Loss</option>
+                      <option value="gain">Extreme weight Loss</option>
+                    </select>
+                  </div>
+
+                  <div class="col-12 py-2" style="border-radius: 10px">
+                    <button type="submit" class="btn w-100 fw-bold py-2 btn-lg btn-primary text-light" style="border-radius: 10px">Update</button>
+                  </div>
+                </form>
+              </div>
+
+              <script>
+                let actdesc = [
+                  { value: "sedentary", label: "Sedentary: little or no exercise" },
+                  { value: "lightly_active", label: "Light: exercise 1-3 times/week", selected: true },
+                  { value: "moderately_active", label: "Moderate: exercise 4-5 times/week" },
+                  { value: "very_active", label: "Very Active: intense exercise 6-7 times/week" },
+                ];
+
+                function handlesubmit(event) {
+                  const toast_success2 = document.getElementById("toast-success").style;
+                  const toast_fail2 = document.getElementById("toast-fail").style;
+                  const loader2 = document.getElementById("loader").style;
+                  const response_msg = document.getElementById("responseMessage");
+
+                  event.preventDefault(); // Prevent default form submission
+
+                  loader2.display = "block";
+
+                  const age = parseInt(document.getElementById("age").value);
+                  const height = parseInt(document.getElementById("height").value);
+                  const weight = parseInt(document.getElementById("weight").value);
+                  const activity_level = document.getElementById("activity_level").value;
+                  const weight_goal = document.getElementById("weight_goal").value;
+
+                  let activity_desc = actdesc.find((e) => e.value == activity_level);
+                  console.log(activity_desc.label);
+                  // Get the selected gender
+                  let gender;
+                  const maleRadio = document.getElementById("flexRadioDefault1");
+                  const femaleRadio = document.getElementById("flexRadioDefault2");
+
+                  if (maleRadio.checked) {
+                    gender = "Male";
+                  } else if (femaleRadio.checked) {
+                    gender = "Female";
+                  }
+                  const formData = {
+                    age: age,
+                    height: height,
+                    weight: weight,
+                    gender: gender, // Include the gender in the formData object
+                    activity_level: activity_level,
+                    weight_goal: weight_goal,
+                  };
+
+                  console.log(formData);
+
+                  fetch("https://jfyprzjbx1.execute-api.ap-south-1.amazonaws.com/calculator1", {
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(formData),
+                  })
+                    .then((response) => {
+                      if (!response.ok) {
+                        throw new Error("Network response was not ok");
+                        alert("Something Went Wrong");
+                      }
+                      return response.json();
+                    })
+                    .then((data) => {
+                      // Handle response data here, if needed
+                      console.log(data);
+                      loader2.display = "none";
+                      if (data.statusCode !== 401) {
+                        let datas = JSON.parse(data.body);
+                        localStorage.setItem("calories", datas.calories);
+                        localStorage.setItem("activity", activity_level);
+                        localStorage.setItem("goal", weight_goal);
+                        localStorage.setItem("activity_desc", activity_desc.label);
+                        // Setting data to cards
+                        document.getElementById("calories").innerHTML = addCommasToNumber(datas.calories);
+                        document.getElementById("activity").innerHTML = formatText(activity_level);
+                        document.getElementById("goal").innerHTML = formatText(weight_goal);
+                        document.getElementById("activity_desc").innerHTML = activity_desc.label;
+
+                        toast_success2.display = "block";
+                      } else {
+                        response_msg.innerHTML = data.body;
+                        toast_fail2.display = "block";
+                      }
+                    })
+                    .catch((error) => {
+                      console.error("There was a problem with the fetch operation:", error);
+                      response_msg.innerHTML = error;
+                      toast_fail2.display = "block";
+                      loader2.display = "none";
+                    });
+                }
+              </script>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toasters and Loaders -->
+    <div id="toast-success">
+      <div class="toast-bar-success shadow" id="success-toast">
+        <span class="d-flex align-items-center justify-content-between">
+          <i class="fa fa-check-circle text-primary me-3 fs-3"></i>
+          Success !
+        </span>
+      </div>
+    </div>
+
+    <div id="toast-fail">
+      <div class="toast-bar-fail shadow">
+        <span class="d-flex align-items-center justify-content-between">
+          <i class="fa fa-times-circle text-danger me-3 fs-3"></i>
+          Something Went Wrong!
+        </span>
+      </div>
+    </div>
+
+    <div id="loader">
+      <div
+        class="d-flex align-items-center justify-content-center w-100"
+        style="height: 100vh; z-index: 9999999; position: fixed; top: 0; left: 0; backdrop-filter: blur(5px); background-color: rgba(239, 195, 142, 0.5)"
+      >
+        <div>
+          <div class="loader"></div>
+          <h5 class="text-center text-secondary mt-2">Loading...</h5>
+        </div>
+      </div>
+    </div>
+    <!-- Toasters and Loaders End-->
+  </body>
+
+  <script>
+    AOS.init();
+  </script>
+
+  <script>
+    function calculateCalories() {
+      const toast_success = document.getElementById("toast-success").style;
+      const toast_fail = document.getElementById("toast-fail").style;
+      const loader = document.getElementById("loader").style;
+
+      const username = localStorage.getItem("activity-name") ? localStorage.getItem("activity-name") : "running";
+      const duration = document.getElementById("current-duration").value;
+      const cal_weight = document.getElementById("cal-weight").value;
+
+      if (cal_weight == "") {
+        alert("Weight feild cannot be empty!");
+      } else {
+        loader.display = "block";
+        const formData = {
+          type: username,
+          duration: duration,
+          weight: cal_weight,
+        };
+
+        console.log(formData);
+
+        fetch("https://baacudjm7l.execute-api.us-east-1.amazonaws.com/dev", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Network response was not ok");
+            }
+            return response.json();
+          })
+          .then((data) => {
+            // Handle response data here, if needed
+            toast_success.display = "block";
+            loader.display = "none";
+            console.log(data);
+            let datas = JSON.parse(data.body);
+            document.getElementById("calories-burned").innerHTML = datas.calories_burned.toFixed(2);
+          })
+          .catch((error) => {
+            toast_fail.display = "block";
+            loader.display = "none";
+
+            console.error("There was a problem with the fetch operation:", error);
+          });
+      }
+    }
+  </script>
+
+  <!-- Custom Range Handling -->
+
+  <script>
+    // Get the slider
+    var slider = document.getElementById("current-duration");
+
+    // Update the slider background color when value changes
+    slider.oninput = function () {
+      var value = (slider.value - slider.min) / (slider.max - slider.min);
+      var percent = value * 100;
+      slider.style.background = "linear-gradient(to right, #efc38e 0%, #efc38e " + percent + "%, #373258 " + percent + "%, #373258 100%)";
+
+      document.getElementById("duration").innerHTML = slider.value;
+    };
+  </script>
+
+  <!-- Custom range end -->
+
+  <script>
+    window.onload = function () {
+      // Replace 'destination_page.html' with the URL of the page you want to redirect to
+      if (localStorage.getItem("uToken") == undefined) {
+        window.location.href = "../auth/login.html";
+      }
+    };
+  </script>
+
+  <script>
+    const formData = {
+      access_token: localStorage.getItem("uToken"),
+    };
+
+    fetch("https://30m1xwspt2.execute-api.ap-south-1.amazonaws.com/get_username", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("uToken")}`,
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        // Handle response data here, if needed
+
+        console.log(JSON.parse(data.body));
+        let datas = JSON.parse(data.body);
+        document.getElementById("uname").innerHTML = datas.user;
+        localStorage.setItem("username", datas.user);
+        if (localStorage.getItem("subscribed")) {
+          if (localStorage.getItem("subscribed") !== "" && localStorage.getItem("subscribed") == datas.user) {
+            console.log("herer");
+            let arr = document.getElementsByClassName("subscribebtn");
+
+            [...arr].map((ini) => (ini.style.display = "none"));
+          }
+        }
+      })
+      .catch((error) => {
+        console.error("There was a problem with the fetch operation:", error);
+      });
+  </script>
+
+  <script>
+    const toast_success = document.getElementById("toast-success").style;
+    const toast_fail = document.getElementById("toast-fail").style;
+    const loader = document.getElementById("loader").style;
+
+    function handleSubscribe() {
+      loader.display = "block";
+      const username = localStorage.getItem("username");
+      const formData = {
+        subscriber: username,
+      };
+
+      console.log(formData);
+
+      fetch("https://l32h9nhktl.execute-api.ap-south-1.amazonaws.com/send_mail", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          // Handle response data here, if needed
+          toast_success.display = "block";
+
+          localStorage.setItem("subscribed", localStorage.getItem("username"));
+          loader.display = "none";
+          let arr = document.getElementsByClassName("subscribebtn");
+          [...arr].map((ini) => (ini.style.display = "none"));
+        })
+        .catch((error) => {
+          toast_fail.display = "block";
+          loader.display = "none";
+
+          console.error("There was a problem with the fetch operation:", error);
+        });
+    }
+
+    function handleLogout() {
+      loader.display = "block";
+      localStorage.removeItem("uToken");
+      window.location.href = "../auth/login.html";
+    }
+  </script>
+
+  <script>
+    document.querySelectorAll(".hover-span-1").forEach((item) => {
+      item.addEventListener("mouseover", (event) => {
+        item.style.transform = "scale(1.1)";
+        document.querySelectorAll(".hover-span-1:not(:hover)").forEach((element) => {
+          element.style.transform = "scale(0.9)";
+          element.style.filter = "blur(2px)";
+        });
+      });
+
+      item.addEventListener("mouseout", (event) => {
+        document.querySelectorAll(".hover-span-1").forEach((element) => {
+          element.style.transform = "scale(1)";
+          element.style.filter = "blur(0px)";
+        });
+      });
+    });
+  </script>
+
+  <script>
+    function openNav() {
+      if (window.innerWidth > 1000) {
+        document.getElementById("mySidenav").style.width = "300px";
+        document.getElementById("main").style.marginLeft = "300px";
+        document.getElementById("sidenav-text").style.opacity = "1";
+      } else {
+        document.getElementById("mySidenav").style.width = "100%";
+        document.getElementById("main").style.marginLeft = "0";
+        document.getElementById("sidenav-text").style.opacity = "1";
+      }
+    }
+
+    function closeNav() {
+      document.getElementById("sidenav-text").style.opacity = "0";
+      document.getElementById("mySidenav").style.width = "0";
+      document.getElementById("main").style.marginLeft = "0";
+    }
+  </script>
+
+  <!-- Text Reformatters -->
+  <script>
+    function formatText(text) {
+      // Check if the text contains underscores
+      if (text.includes("_")) {
+        // Split the text by underscores
+        const words = text.split("_");
+
+        // Capitalize the first letter of each word and join them with a space
+        return words.map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ");
+      } else {
+        // If the text doesn't contain underscores, capitalize the first letter and return
+        return text.charAt(0).toUpperCase() + text.slice(1);
+      }
+    }
+
+    function addCommasToNumber(number) {
+      // Convert the number to a string and use toLocaleString to add commas
+      return Number(number).toLocaleString();
+    }
+  </script>
+
+  <!-- Chart JS Mock DATA -->
+  <script>
+    new Chart("myChart2", {
+      type: "doughnut",
+      data: {
+        labels: ["Deep Sleep", "Light Sleep"],
+        datasets: [
+          {
+            data: [10, 40],
+            backgroundColor: ["rgb(55, 50, 88,0.8)", "rgb(54, 162, 235, 0.8)"],
+            hoverOffset: 4,
+          },
+        ],
+      },
+
+      options: {
+        legend: {
+          labels: {
+            fontColor: "#48426d",
+          },
+        },
+        title: {
+          display: true,
+          text: "Sleep Qulaity (HRs)",
+          fontColor: "#48426d",
+          fontSize: "24",
+        },
+      },
+    });
+
+    let labels = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+    const data = {
+      labels: labels,
+      datasets: [
+        {
+          label: "Consume",
+          data: [65, 59, 80, 81, 56, 55, 40, 50, 22, 44, 65, 30],
+          borderColor: "rgb(75, 192, 192)",
+          tension: 0.1,
+          backgroundColor: "rgba(75, 192, 192,0.5)",
+          fill: "start",
+        },
+        {
+          label: "Burned",
+          data: [35, 69, 40, 81, 36, 55, 70, 50, 62, 44, 75, 70],
+          borderColor: "rgb(239, 195, 142)",
+          tension: 0.1,
+          backgroundColor: "rgba(239, 195, 142,0.5)",
+          fill: "start",
+        },
+      ],
+    };
+
+    new Chart("myChart", {
+      type: "line",
+      data: data,
+
+      options: {
+        legend: {
+          labels: {
+            fontColor: "#efc38e",
+          },
+        },
+        title: {
+          display: true,
+          text: "Calories Consumption History",
+          fontColor: "#efc38e",
+          fontSize: "18",
+        },
+      },
+    });
+  </script>
+
+  <!-- On load data fetching -->
+  <script>
+    let array = ["calories", "activity", "goal", "activity_desc"];
+
+    array.map((ini) => {
+      if (localStorage.getItem(ini) && ini !== "activity" && ini !== "goal") {
+        if (ini == "calories") {
+          document.getElementById(ini).innerHTML = addCommasToNumber(localStorage.getItem(ini));
+        } else {
+          document.getElementById(ini).innerHTML = localStorage.getItem(ini);
+        }
+      } else if (ini == "activity" || ini == "goal") {
+        let ftext = formatText(localStorage.getItem(ini));
+        document.getElementById(ini).innerHTML = ftext;
+      } else {
+        document.getElementById(ini).innerHTML = "Nan";
+      }
+    });
+  </script>
+
+  <script>
+    function toggleActive(element) {
+      // Remove 'active' class from all elements with class 'act-card'
+      var actCards = document.querySelectorAll(".act-card");
+      actCards.forEach(function (card) {
+        card.classList.remove("active");
+      });
+
+      // Add 'active' class to the clicked element
+      element.classList.add("active");
+
+      // Fetch the data-act attribute value of the clicked element
+      var dataAct = element.querySelector("img").getAttribute("data-act");
+      console.log(dataAct); // This will log the data-act value to the console
+      localStorage.setItem("activity-name", dataAct);
+    }
+  </script>
+</html>

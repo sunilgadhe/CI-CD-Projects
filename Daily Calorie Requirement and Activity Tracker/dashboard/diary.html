@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+    <link rel="stylesheet" href="../master.css" />
+    <link rel="icon" href="favic.png" type="image/gif" sizes="16x16" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- <script type="text/javascript" src="master.js" async></script> -->
+
+    <!-- ChartJS  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <!-- CahrtJS end -->
+    <title>Calories Tracker</title>
+  </head>
+  <body class="bg-primary">
+    <!-- Side Nav -->
+
+    <div id="mySidenav" class="sidenav bg-secondary d-flex flex-column">
+      <a href="javascript:void(0)" class="closebtn text-warning" onclick="closeNav()">&times;</a>
+      <div class="flex-column mb-auto" id="sidenav-text">
+        <a href="dashboard.html" class="text-warning link-span-1 d-flex align-items-center justify-content-start"><i class="fa fa-dashboard me-3 fs-4"></i> Dasboard</a>
+        <a href="diary.html" class="text-warning link-span-1 d-flex align-items-center justify-content-start"><i class="fa fa-book me-3 fs-4"></i>Diary</a>
+        <a href="#" class="text-warning link-span-1 d-flex align-items-center justify-content-start"><i class="fa fa-phone me-3 fs-4"></i>Contact</a>
+        <a href="#" class="text-warning link-span-1 d-flex align-items-center justify-content-start"><i class="fa fa-info me-3 fs-4"></i>About Us</a>
+      </div>
+      <hr />
+      <div class="dropdown mb-3">
+        <a href="#" class="d-flex align-items-center text-warning fs-5 text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="fa fa-user text-warning fs-3 rounded-3 me-3"></i>
+          Account
+        </a>
+        <ul class="dropdown-menu dropdown-menu-dark bg-secondary shadow" aria-labelledby="dropdownUser1">
+          <li><a class="dropdown-item fs-5" href="#">Profile</a></li>
+          <li><a class="dropdown-item fs-5" href="#">Sign out</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- SideNav End -->
+    <div id="main">
+      <div class="container-fluid p-md-5">
+        <div class="w-100 mb-5 text-warning d-flex align-items-center justify-content-between bg-secondary rounded-pill py-3 px-md-5 px-4 shadow-sm border-primary border-2 border" data-aos="fade-up">
+          <div class="greetings w-100 d-md-flex d-none">
+            <h3 class="fs-2 my-0 pb-0 me-2">Hello!</h3>
+            <h3 class="fw-bold fs-2 my-0">John 👋</h3>
+          </div>
+          <h3 class="fs-5 my-0 pb-0 w-100 text-md-center text-start fw-light">
+            <span> Diary </span>
+          </h3>
+          <div class="w-100 text-end">
+            <button class="btn btn-warning btn-lg rounded-circle text-primary" onclick="openNav()"><i class="fa fa-navicon"></i></button>
+          </div>
+        </div>
+
+        <div class="row mt-4 p-xs-5 p-4 p-lg-3">
+          <div class="col-lg-4 mb-5" data-aos="fade-up">
+            <div class="card shadow-lg bg-warning p-3 p-md-5 position-relative hover-span-1" style="border-radius: 28px">
+              <div class="row g-0">
+                <div class="col-8">
+                  <div class="card-body">
+                    <p class="text-primary fs-2">Consumption</p>
+                    <h4 class="fw-bold text-primary display-6 mb-5">Food</h4>
+
+                    <a href="#" class="btn btn-primary btn-lg p-4 shadow-lg arrow-slide-btn position-absolute bottom-0 mb-5" style="border-radius: 28px">
+                      <span class="d-flex align-items-center justify-content-center">
+                        Add
+
+                        <i class="fa fa-plus ms-3 text-warning" style="border-radius: 15px"></i>
+                      </span>
+                    </a>
+                  </div>
+                </div>
+                <div class="col-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" style="height: 300px" class="bi bi-fire img-fluid rounded-start svg-primary">
+                    <path
+                      d="M8 16c3.314 0 6-2 6-5.5 0-1.5-.5-4-2.5-6 .25 1.5-1.25 2-1.25 2C11 4 9 .5 6 0c.357 2 .5 4-2 6-1.25 1-2 2.729-2 4.5C2 14 4.686 16 8 16m0-1c-1.657 0-3-1-3-2.75 0-.75.25-2 1.25-3C6.125 10 7 10.5 7 10.5c-.375-1.25.5-3.25 2-3.5-.179 1-.25 2 1 3 .625.5 1 1.364 1 2.25C11 14 9.657 15 8 15"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 mb-5" data-aos="fade-up" data-aos-delay="200">
+            <div class="card shadow-lg bg-secondary p-3 p-md-5 position-relative hover-span-1" style="border-radius: 28px">
+              <div class="row g-0">
+                <div class="col-8">
+                  <div class="card-body">
+                    <p class="text-warning fs-2">Weight Changed</p>
+                    <h4 class="fw-bold text-warning display-6 mb-5">10 kg</h4>
+
+                    <a href="#" class="btn btn-primary btn-lg p-4 shadow-lg arrow-slide-btn position-absolute bottom-0 mb-5" style="border-radius: 28px">
+                      <span class="d-flex align-items-center justify-content-center">
+                        Add
+
+                        <i class="fa fa-plus ms-3 text-warning" style="border-radius: 15px"></i>
+                      </span>
+                    </a>
+                  </div>
+                </div>
+                <div class="col-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="height: 300px" class="img-fluid rounded-start svg-warning">
+                    <path
+                      d="M469.332,0.004H42.668C19.101,0.004,0,19.104,0,42.673v426.655c0,23.567,19.101,42.668,42.668,42.668h426.664
+                c23.567,0,42.668-19.101,42.668-42.668V42.673C512,19.104,492.899,0.004,469.332,0.004z M364.37,191.877h-65.293l11.409-68.16
+                l-10.592-2.15l-10.6-2.167l-17.443,72.477H147.63l-28.151-81.902c39.867-24.026,86.578-37.868,136.529-37.868
+                c49.943,0,96.645,13.842,136.513,37.868L364.37,191.877z"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Streak Card=========================== -->
+
+          <div class="col-lg-4 mb-5" data-aos="fade-up" data-aos-delay="500">
+            <div class="card shadow-lg bg-warning p-3 position-relative hover-span-1" style="border-radius: 28px">
+              <div class="row g-0">
+                <div class="col-12">
+                  <div class="card-body">
+                    <p class="text-primary fs-4">Current Date: <span class="fw-bold" id="current-date"></span></p>
+                    <div class="navigation d-flex align-items-center justify-content-center">
+                      <button class="prev-month btn btn-sm btn-primary"><i class="fa fa-arrow-left"></i></button>
+                      <p class="text-primary mx-3 py-0 my-0" id="date-nav"></p>
+                      <button class="next-month btn btn-sm btn-primary"><i class="fa fa-arrow-right"></i></button>
+                    </div>
+                    <div class="date-picker mt-3">
+                      <input type="hidden" id="datepicker" readonly />
+                      <div class="calendar"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Streak Card End========= -->
+
+          <div class="col-lg-8" data-aos="fade-up" data-aos-delay="800">
+            <div class="card shadow-lg bg-secondary text-warning p-3 position-relative" style="border-radius: 28px">
+              <div class="row g-0">
+                <div class="col-12 pb-4">
+                  <div class="card-body p-3 mb-4">
+                    <canvas id="myChart" style="width: 100%; height: 400px"> </canvas>
+                    <p class="text-warning fw-light mt-2">*Burned <span class="fw-bold fs-5"> 50% more</span> than other users</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="position-absolute p-4" style="border-radius: 15px; top: -10px; right: -10px">
+                <a href="#" class="btn btn-warning btn-lg shadow-lg add-slide-btn">
+                  <span class="d-flex align-items-center justify-content-center">
+                    <i class="fa fa-plus-circle fs-1"></i>
+
+                    <span class="text"> Add log</span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="1000">
+            <div class="card shadow-lg bg-warning text-primary p-3 position-relative" style="border-radius: 28px">
+              <div class="row g-0">
+                <div class="col-12 pb-4">
+                  <div class="card-body p-3 mb-4">
+                    <canvas id="myChart2" style="width: 100%; height: 400px"> </canvas>
+                    <p class="text-primary fw-light mt-2">*better than <span class="fw-bold fs-5"> 70% </span>users</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="position-absolute p-4" style="border-radius: 15px; top: -10px; right: -10px">
+                <a href="#" class="btn btn-secondary btn-lg shadow-lg add-slide-btn">
+                  <span class="d-flex align-items-center justify-content-center">
+                    <i class="fa fa-plus-circle fs-1"></i>
+
+                    <span class="text"> Add log</span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    AOS.init();
+  </script>
+
+  <!-- Custom date picker -->
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const calendar = document.querySelector(".calendar");
+      const prevMonthBtn = document.querySelector(".prev-month");
+      const nextMonthBtn = document.querySelector(".next-month");
+      const monthYearText = document.querySelector(".month-year");
+
+      let currentDate = new Date();
+
+      // Generate calendar
+      function generateCalendar(year, month) {
+        const today = new Date();
+        const firstDay = new Date(year, month, 1).getDay();
+        const lastDate = new Date(year, month + 1, 0).getDate();
+        const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+        const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+        document.getElementById("date-nav").innerHTML = monthNames[month] + " " + year;
+
+        let table = "<table>";
+
+        table += "<tr>";
+        for (let day of days) {
+          table += "<td>" + day + "</td>";
+        }
+        table += "</tr>";
+
+        let date = 1;
+        for (let i = 0; i < 6; i++) {
+          table += "<tr>";
+          for (let j = 0; j < 7; j++) {
+            if (i === 0 && j < firstDay) {
+              table += "<td></td>";
+            } else if (date > lastDate) {
+              break;
+            } else {
+              let classes = "";
+              if (year === today.getFullYear() && month === today.getMonth() && date === today.getDate()) {
+                classes = "active";
+                document.getElementById("current-date").innerHTML = year + "-" + (month + 1) + "-" + date;
+              }
+              table += "<td class='" + classes + "' onclick='selectDate(this, " + date + ", " + month + ", " + year + ")'>" + date + "</td>"; // Add onclick function
+              date++;
+            }
+          }
+          table += "</tr>";
+        }
+
+        table += "</table>";
+        calendar.innerHTML = table;
+      }
+
+      // Show current month's calendar
+      generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
+
+      // Previous month button
+      prevMonthBtn.addEventListener("click", function () {
+        currentDate = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1);
+        generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
+      });
+
+      // Next month button
+      nextMonthBtn.addEventListener("click", function () {
+        currentDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1);
+        generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
+      });
+
+      // Make calendar visible
+      calendar.style.display = "block";
+    });
+
+    // Function to handle date selection
+    function selectDate(cell, date, month, year) {
+      // Remove active class from all dates
+      const activeDates = document.querySelectorAll(".calendar td.active");
+      activeDates.forEach(function (activeDate) {
+        activeDate.classList.remove("active");
+      });
+
+      // Add active class to the clicked date
+      cell.classList.add("active");
+
+      console.log("Selected date:", year + "-" + (month + 1) + "-" + date);
+      document.getElementById("current-date").innerHTML = year + "-" + (month + 1) + "-" + date;
+    }
+  </script>
+
+  <!-- Custom date picker end -->
+
+  <script>
+    document.querySelectorAll(".hover-span-1").forEach((item) => {
+      item.addEventListener("mouseover", (event) => {
+        item.style.transform = "scale(1.1)";
+        document.querySelectorAll(".hover-span-1:not(:hover)").forEach((element) => {
+          element.style.transform = "scale(0.9)";
+          element.style.filter = "blur(2px)";
+        });
+      });
+
+      item.addEventListener("mouseout", (event) => {
+        document.querySelectorAll(".hover-span-1").forEach((element) => {
+          element.style.transform = "scale(1)";
+          element.style.filter = "blur(0px)";
+        });
+      });
+    });
+  </script>
+
+  <script>
+    function openNav() {
+      if (window.innerWidth > 1000) {
+        document.getElementById("mySidenav").style.width = "300px";
+        document.getElementById("main").style.marginLeft = "300px";
+        document.getElementById("sidenav-text").style.opacity = "1";
+      } else {
+        document.getElementById("mySidenav").style.width = "100%";
+        document.getElementById("main").style.marginLeft = "0";
+        document.getElementById("sidenav-text").style.opacity = "1";
+      }
+    }
+
+    function closeNav() {
+      document.getElementById("sidenav-text").style.opacity = "0";
+      document.getElementById("mySidenav").style.width = "0";
+      document.getElementById("main").style.marginLeft = "0";
+    }
+  </script>
+
+  <!-- Chart JS Mock DATA -->
+  <script>
+    new Chart("myChart2", {
+      type: "doughnut",
+      data: {
+        labels: ["Deep Sleep", "Light Sleep"],
+        datasets: [
+          {
+            data: [10, 40],
+            backgroundColor: ["rgb(55, 50, 88,0.8)", "rgb(54, 162, 235, 0.8)"],
+            hoverOffset: 4,
+          },
+        ],
+      },
+
+      options: {
+        legend: {
+          labels: {
+            fontColor: "#48426d",
+          },
+        },
+        title: {
+          display: true,
+          text: "Sleep Qulaity (HRs)",
+          fontColor: "#48426d",
+          fontSize: "24",
+        },
+      },
+    });
+
+    let labels = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+    const data = {
+      labels: labels,
+      datasets: [
+        {
+          label: "Consume",
+          data: [65, 59, 80, 81, 56, 55, 40, 50, 22, 44, 65, 30],
+          borderColor: "rgb(75, 192, 192)",
+          tension: 0.1,
+          backgroundColor: "rgba(75, 192, 192,0.5)",
+          fill: "start",
+        },
+        {
+          label: "Burned",
+          data: [35, 69, 40, 81, 36, 55, 70, 50, 62, 44, 75, 70],
+          borderColor: "rgb(239, 195, 142)",
+          tension: 0.1,
+          backgroundColor: "rgba(239, 195, 142,0.5)",
+          fill: "start",
+        },
+      ],
+    };
+
+    new Chart("myChart", {
+      type: "line",
+      data: data,
+
+      options: {
+        legend: {
+          labels: {
+            fontColor: "#efc38e",
+          },
+        },
+        title: {
+          display: true,
+          text: "Calories Consumption History",
+          fontColor: "#efc38e",
+          fontSize: "18",
+        },
+      },
+    });
+  </script>
+</html>
